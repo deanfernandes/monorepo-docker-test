@@ -1,7 +1,16 @@
 import logo from './logo.svg';
 import './App.css';
+import { useEffect } from 'react';
 
 function App() {
+  useEffect(() => {
+    const apiBaseUrl = process.env.REACT_APP_API_BASE_URL || 'http://localhost:8080';
+    window.fetch(`${apiBaseUrl}/weatherforecast`)
+      .then((res) => res.json())
+      .then((data) => console.log(data))
+      .catch((err) => console.error(err));
+  }, []);
+
   return (
     <div className="App">
       <header className="App-header">
